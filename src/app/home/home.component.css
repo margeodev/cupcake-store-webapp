@@ -1,0 +1,40 @@
+.custom-main-card {    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 1170px;
+    height: 700px;
+    background: #ffffff;
+    border-radius: 15px;
+
+    .custom-btns {
+        .custom-card-btn {
+            transition: transform 0.2s ease-in-out;
+            cursor: pointer;
+            animation: fadeIn 0.2s;
+            text-align: center;
+            width: 500px;
+    
+            .p-card {
+                background: #b5fc8c;
+                width: 500px;
+                height: 150px;
+            }
+            
+        }
+    
+        .custom-card-btn:hover {
+            transform: scale(1.05);
+        }
+    
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    }
+
+    
+    
+
+    
+}
