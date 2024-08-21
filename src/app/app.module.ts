@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { ButtonModule } from 'primeng/button';
 import { RouterModule } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
+import { CardapioComponent } from './cardapio/cardapio.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CardapioComponent
   ],
   imports: [
     AppRoutingModule,
