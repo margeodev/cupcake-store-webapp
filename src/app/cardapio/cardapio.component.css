@@ -1,9 +1,7 @@
-.custom-main-card {    
-    display: flex;
-    /* justify-content: center;
-    align-items: center; */
+.custom-main-card {
     width: 1170px;
     height: 800px;
     background: #ffffff;
     border-radius: 15px;
+    padding: 30px;
 }
