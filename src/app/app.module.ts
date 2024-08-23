@@ -8,20 +8,24 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardapioComponent } from './cardapio/cardapio.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import { InputTextModule } from 'primeng/inputtext';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     BreadcrumbComponent,
-    CardapioComponent
+    CardapioComponent,
+    PageHeaderComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BreadcrumbModule,
     ButtonModule,
-    RouterModule
+    RouterModule,
+    InputTextModule
   ],
   providers: [],
   bootstrap: [AppComponent]
