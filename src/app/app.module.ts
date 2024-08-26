@@ -10,6 +10,10 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { InputTextModule } from 'primeng/inputtext';
+import { TableModule } from 'primeng/table';
+import { TooltipModule } from 'primeng/tooltip';
+import { TabelaCardapioComponent } from './tabela-cardapio/tabela-cardapio.component';
+import { BadgeModule } from 'primeng/badge';
 
 
 @NgModule({
@@ -17,7 +21,8 @@ import { InputTextModule } from 'primeng/inputtext';
     AppComponent,
     BreadcrumbComponent,
     CardapioComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    TabelaCardapioComponent
   ],
   imports: [
     AppRoutingModule,
@@ -25,6 +30,9 @@ import { InputTextModule } from 'primeng/inputtext';
     BreadcrumbModule,
     ButtonModule,
     RouterModule,
+    BadgeModule,
+    TooltipModule,
+    TableModule,
     InputTextModule
   ],
   providers: [],

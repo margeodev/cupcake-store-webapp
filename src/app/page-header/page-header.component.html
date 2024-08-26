@@ -4,7 +4,9 @@
     </div>
 
     <div class="w-4 flex justify-content-between align-items-center">
-        <span class="pi pi-shopping-cart" style="font-size: 2rem"></span>
+        <span class="pi pi-shopping-cart" style="font-size: 1.5rem">
+            <p-badge [value]="badgeValue"></p-badge>
+        </span>
     
         <span class="p-input-icon-left">
             <i class="pi pi-search"></i>
@@ -14,6 +16,6 @@
     </div>
 
     <div class="w-1 jalign-items-end">        
-        <p-button label="Sair"></p-button>
+        <p-button label="Sair" routerLink="/home"></p-button>
     </div>    
 </div>
