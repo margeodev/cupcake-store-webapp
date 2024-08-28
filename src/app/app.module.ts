@@ -8,12 +8,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { CardapioComponent } from './cardapio/cardapio.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
-import { PageHeaderComponent } from './page-header/page-header.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { TableModule } from 'primeng/table';
 import { TooltipModule } from 'primeng/tooltip';
-import { TabelaCardapioComponent } from './tabela-cardapio/tabela-cardapio.component';
 import { BadgeModule } from 'primeng/badge';
+import { CarrinhoComprasComponent } from './carrinho-compras/carrinho-compras.component';
+import { CarrinhoComprasModule } from './carrinho-compras/carrinho-compras.module';
+import { DataViewModule } from 'primeng/dataview';
 
 
 @NgModule({
@@ -21,14 +22,15 @@ import { BadgeModule } from 'primeng/badge';
     AppComponent,
     BreadcrumbComponent,
     CardapioComponent,
-    PageHeaderComponent,
-    TabelaCardapioComponent
+    CarrinhoComprasComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BreadcrumbModule,
     ButtonModule,
+    CarrinhoComprasModule,
+    DataViewModule,
     RouterModule,
     BadgeModule,
     TooltipModule,

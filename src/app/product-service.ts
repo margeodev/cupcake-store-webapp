@@ -1,16 +1,13 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Product } from './domain/product';
     
-@Injectable()
+@Injectable({
+    providedIn: 'root'  // Isso garante que o serviço seja fornecido na raiz da aplicação
+  })
 export class ProductService {
 
     badgeValue = 0;
-    emitirTotalItens = new EventEmitter<string>();
-
-    updateBadgeValue(badgeValue: string) {
-        this.emitirTotalItens.emit(badgeValue);
-    }
 
     getProductsData() {
         return [

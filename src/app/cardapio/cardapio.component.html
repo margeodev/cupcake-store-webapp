@@ -5,19 +5,85 @@
                                   ]"/>
     </div>
 
-    <app-page-header page-title="Cardápio"></app-page-header>
+     <!-- PAGE HEADER  -->
+    <div class="flex align-items-center justify-content-between mt-5">
+        <div class="w-5">
+            <h1>Cardápio</h1>
+        </div>
 
+        <div class="w-4 flex justify-content-between align-items-center">
+            <span class="pi pi-shopping-cart" style="font-size: 1.5rem">
+                <p-badge [value]="badgeValue"></p-badge>
+            </span>
+        
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText/>
+            </span>
+            <span class="pi pi-question-circle" style="font-size: 2rem"></span>
+        </div>
+    
+        <div class="w-2 align-items-end">        
+            <p-button label="Finalizar Pedido" 
+                      (click)="finalizarPedido()"></p-button>
+        </div>    
+        <div class="flex justify-content-end">        
+            <span class="pi pi-sign-out cursor-pointer" 
+                  routerLink="/home" 
+                  style="font-size: 2rem"
+                  pTooltip="Sair" ></span>
+        </div>    
+    </div>
 
-
-
-<!-- <app-page-header page-title="Categorias"
-                 button-text="Nova Categoria" 
-                 button-link="new"
-                 button-icon="pi pi-plus"
-                 style-class="p-button-success"></app-page-header> -->
-
+    <!-- TABELA DE PRODUTOS DO CARDÁPIO -->
     <div class="mt-4">
-        <app-tabela-cardapio></app-tabela-cardapio>
+        <p-table [value]="products" [tableStyle]="{'min-width': '60rem'}">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>Nome</th>
+                    <th></th>
+                    <th>Código</th>
+                    <th>Preço</th>
+                    <th>Descrição</th>
+                    <th>Quantidade</th>
+                    <th>Adicionar</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{product.name}}</td>
+                    <td><img [src]="product.image" [alt]="product.name" width="100" class="shadow-4" /></td>
+                    <td>{{product.code}}</td>
+                    <td>{{product.price | currency:'BRL'}}</td>
+                    <td>{{product.description}}</td>
+                    <td>{{product.quantity}}</td>
+                    <td>
+                        <div class="flex align-items-center justify-content-between">    
+                            <button pTooltip="Adicionar cupcake" 
+                                    pButton 
+                                    pRipple 
+                                    icon="pi pi-cart-plus" 
+                                    (click)="adicionarProduto(product)"
+                                    class="p-button-success">
+                            </button>
+        
+                            <button pTooltip="Remover cupcake" 
+                                    pButton 
+                                    pRipple 
+                                    icon="pi pi-cart-minus" 
+                                    (click)="removerProduto(product)"
+                                    class="p-button-danger ml-2">
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="summary">
+                <div class="flex align-items-center justify-content-between">
+                    In total there are {{products ? products.length : 0 }} products.
+                </div>
+            </ng-template>
+        </p-table>
     </div>
 
 </div>

@@ -1,0 +1,42 @@
+<div class="custom-main-card">
+    <div class="mt-4">
+        <app-breadcrumb  [items]="[{ icon: 'pi pi-home', routerLink: '/'},
+                                   {label: 'Carrinho de Compras', routerLink: '/cardapio'}
+                                  ]"/>
+    </div>
+
+    <!-- PAGE HEADER  -->
+    <div class="flex align-items-center justify-content-between mt-5">
+        <div class="w-5">
+            <h1>Carrinho de Compras</h1>
+        </div>
+
+        <div class="w-4 flex justify-content-between align-items-center">
+            <span class="pi pi-shopping-cart" style="font-size: 1.5rem">
+                <p-badge [value]="badgeValue"></p-badge>
+            </span>
+        
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input type="text" pInputText/>
+            </span>
+            <span class="pi pi-question-circle" style="font-size: 2rem"></span>
+        </div>
+    
+        <div class="w-2 align-items-end">        
+            <p-button label="Pagamento" 
+                      routerLink="/carrinho"></p-button>
+        </div>    
+        <div class="flex justify-content-end">        
+            <span class="pi pi-sign-out cursor-pointer" 
+                  routerLink="/home" 
+                  style="font-size: 2rem"
+                  pTooltip="Sair" ></span>
+        </div>    
+    </div>
+
+    <div class="mt-4">
+
+    </div>
+
+</div>
