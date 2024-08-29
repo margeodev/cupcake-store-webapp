@@ -84,6 +84,7 @@ export class CardapioComponent implements OnInit {
 
   finalizarPedido() {
     localStorage.setItem('pedido', JSON.stringify(this.pedido));
+    localStorage.setItem('badgeValue', this.badgeValue);
     this.router.navigate(['/carrinho']); 
   }
 }
