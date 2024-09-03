@@ -15,6 +15,7 @@ export class CardapioComponent implements OnInit {
   badgeValue = '0';
   pedido: Pedido = {};
   products!: Product[];
+  isButtonDisabled: boolean = true;
   
   constructor(
     private productService: ProductService,
@@ -43,6 +44,7 @@ export class CardapioComponent implements OnInit {
     if(this.badgeValue !== '0') {
       this.updateBadgeValue();
     }
+    this.handleButtonFinalizarCompra();
   }
 
     //Atualiza quantidade do produto selecionado de acordo com a operação
@@ -80,11 +82,20 @@ export class CardapioComponent implements OnInit {
     this.pedido.produtos.push(produto);
     this.updateProductQuantityById(produto.id, Operation.ADD);
     this.updateBadgeValue();
+    this.handleButtonFinalizarCompra();
   }
 
   finalizarPedido() {
     localStorage.setItem('pedido', JSON.stringify(this.pedido));
     localStorage.setItem('badgeValue', this.badgeValue);
     this.router.navigate(['/carrinho']); 
+  }
+
+  handleButtonFinalizarCompra() {
+    if(this.pedido.produtos?.length! > 0) {
+      this.isButtonDisabled = false;      
+    } else {
+      this.isButtonDisabled = true;      
+    }
   }
 }

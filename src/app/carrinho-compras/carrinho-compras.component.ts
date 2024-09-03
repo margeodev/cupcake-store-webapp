@@ -30,6 +30,10 @@ export class CarrinhoComprasComponent implements OnInit {
     }    
   }
 
+  abrirOpcoesPagamento() {
+    localStorage.setItem('valorTotal', this.valorTotal.toString());
+  }
+
   removeDuplicateProducts(products: Product[]): void {
     const uniqueProducts = new Map<string, Product>();
 
@@ -39,9 +43,7 @@ export class CarrinhoComprasComponent implements OnInit {
         }
     });
 
-    this.productosPedido = Array.from(uniqueProducts.values());
-    console.log('produtos no pedido: ', this.productosPedido);
-    
+    this.productosPedido = Array.from(uniqueProducts.values());    
   }
 
   calcularValorTotal(products: Product[]): void {

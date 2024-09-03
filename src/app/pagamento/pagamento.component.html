@@ -1,0 +1,239 @@
+<div class="custom-main-card">
+    <div class="mt-4">
+        <app-breadcrumb [items]="[{ icon: 'pi pi-home', Lrouterink: '/'},
+                                   {label: 'Cardápio', routerLink: '/cardapio'},
+                                   {label: 'Carrinho Compras', routerLink: '/carrinho'},
+                                   {label: 'Pagamento'},
+                                  ]" />
+
+    </div>
+
+    <!-- PAGE HEADER  -->
+    <div class="flex align-items-center justify-content-between mt-5">
+        <div class="w-5">
+            <h1>{{isCompraFinalizada ? 'Resumo do Pedido' : 'Pagamento'}}</h1>
+        </div>
+
+        <div class="w-4 flex justify-content-between align-items-center">
+            <span class="pi pi-shopping-cart" style="font-size: 1.5rem">
+                <p-badge [value]="badgeValue"></p-badge>
+            </span>
+
+            <span class="p-input-icon-left">
+                <i class="pi pi-search"></i>
+                <input disabled type="text" pInputText />
+            </span>
+            <span class="pi pi-question-circle" style="font-size: 2rem"></span>
+        </div>
+
+        <div class="w-2 align-items-end">
+            <p-button label="Pagamento" [disabled]="true" routerLink="/pagamento"></p-button>
+        </div>
+        <div class="flex justify-content-end">
+            <span class="pi pi-sign-out cursor-pointer" routerLink="/home" style="font-size: 2rem"
+                pTooltip="Sair"></span>
+        </div>
+    </div>
+
+    <div class="mt-4">
+        <!-- OPÇÕES DE PAGAMENTO -->
+        <div *ngIf="!isCompraFinalizada">
+            <!-- OPÇÕES DE PAGAMENTO -->
+            <div class="card flex justify-content-start">
+                <form class="flex flex-row gap-3" [formGroup]="tipoPagamentoForm">
+                    <div *ngFor="let category of categories" class="field-checkbox">
+                        <p-radioButton [inputId]="category.key" [value]="category" formControlName="tipoPagamento"
+                            (click)="selecionarTipoPagamento(category)"></p-radioButton>
+                        <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                    </div>
+                </form>
+            </div>
+
+            <!-- CRÉDITO -->
+            <div class="mt-4" *ngIf="isPagamentoCredito">
+                <div class="card flex justify-content-left flex-column w-min">
+                    <p-fieldset legend="Crédito" *ngIf="isPagamentoCredito" class="w-8 justify-content-center">
+                        <form class="flex flex-row gap-3" [formGroup]="creditoForm">
+                            <div class="card flex flex-column gap-5 justify-content-center">
+                                <span class="p-float-label">
+                                    <input pInputText id="username" formControlName="nome" class="w-12" />
+                                    <label htmlFor="username">Nome</label>
+                                </span>
+
+                                <span class="p-float-label">
+                                    <input pInputText id="numCard" formControlName="numCartao" class="w-12" />
+                                    <label htmlFor="numCard">Número Cartão</label>
+                                </span>
+
+                                <div class="card flex flex-row gap-5 justify-content-center">
+                                    <span class="p-float-label">
+                                        <input pInputText id="cvc" formControlName="cvc" />
+                                        <label htmlFor="cvc">CVC</label>
+                                    </span>
+
+                                    <span class="p-float-label">
+                                        <input pInputText id="numParcelas" type="number" formControlName="numParcelas" />
+                                        <label htmlFor="numParcelas">Número de Parcelas</label>
+                                    </span>
+
+
+                                </div>
+
+
+                            </div>
+                        </form>
+                    </p-fieldset>
+
+                    <div class="flex justify-content-between mt-3 ">  
+                        <div class="flex text-2xl font-semibold gap-3"
+                            *ngIf="isPagamentoCredito || isPagamentoDebito || isPagamentoPix || isPagamentoCash">
+                            <div class="flex w-10 gap-3">
+                                <span class="font-semibold font-semibold text-600">Valor:</span>
+                                <span class="font-semibold font-semibold text-600">{{ total | currency:'BRL' }}</span>
+                            </div>
+                        </div>
+                        
+                        <p-button label="Pagar" (click)="confirmarPagamento()"></p-button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- DÉBITO -->
+            <div class="mt-4" *ngIf="isPagamentoDebito">
+                <div class="card flex justify-content-left flex-column w-min">
+                    <p-fieldset legend="Crédito" class="w-8 justify-content-center">
+                        <form class="flex flex-row gap-3" [formGroup]="debitoForm">
+                            <div class="card flex flex-column gap-5 justify-content-center">
+                                <span class="p-float-label">
+                                    <input pInputText id="username" formControlName="nome" class="w-12" />
+                                    <label htmlFor="username">Nome</label>
+                                </span>
+
+                                <span class="p-float-label">
+                                    <input pInputText id="banco" formControlName="banco" class="w-12" />
+                                    <label htmlFor="banco">Banco</label>
+                                </span>
+
+                                <div class="card flex flex-row gap-5 justify-content-center">
+                                    <span class="p-float-label w-">
+                                        <input pInputText id="agencia" formControlName="agencia" />
+                                        <label htmlFor="agencia">Agencia</label>
+                                    </span>
+
+                                    <span class="p-float-label">
+                                        <input pInputText id="conta" formControlName="conta" />
+                                        <label htmlFor="conta">Conta</label>
+                                    </span>
+
+                                    <span class="p-float-label">
+                                        <p-password formControlName="senha"></p-password>
+                                        <label htmlFor="senha">Senha</label>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </p-fieldset>
+
+                    <div class="flex justify-content-between mt-3 ">  
+                        <div class="flex text-2xl font-semibold gap-3"
+                            *ngIf="isPagamentoCredito || isPagamentoDebito || isPagamentoPix || isPagamentoCash">
+                            <div class="w-10">
+                                <span class="font-semibold font-semibold text-600">Valor:</span>
+                                <span class="font-semibold font-semibold text-600">{{ total | currency:'BRL' }}</span>
+                            </div>
+                        </div>
+
+                        <p-button label="Pagar" (click)="confirmarPagamento()"></p-button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PIX -->
+            <div class="mt-4" *ngIf="isPagamentoPix">
+                <div class="card flex justify-content-left flex-column w-8">
+                    <p-fieldset legend="Dinheiro">
+                        <div class="card flex flex-column justify-content-center">
+                            <span class="p-float-label justify-content-center flex">
+                                <img [src]="imgSrc" alt="qrCode" width="200" />
+                            </span>
+                        </div>
+                    </p-fieldset>
+
+                    <div class="flex justify-content-between mt-3 ">  
+                        <div class="flex text-2xl font-semibold gap-3"
+                            *ngIf="isPagamentoCredito || isPagamentoDebito || isPagamentoPix || isPagamentoCash">
+                            <div class="w-10">
+                                <span class="font-semibold font-semibold text-600">Valor:</span>
+                                <span class="font-semibold font-semibold text-600">{{ total | currency:'BRL' }}</span>
+                            </div>
+                        </div>
+                        <p-button label="Pagar" (click)="confirmarPagamento()"></p-button>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- CASH -->
+            <div class="mt-4" *ngIf="isPagamentoCash">
+                <div class="card flex justify-content-left flex-column w-8">
+                    <p-fieldset legend="Dinheiro">
+                        <div class="card flex flex-column justify-content-center">
+                            <span class="p-float-label text-xl">
+                                O pagamento deve ser feito no momento da entrega.
+                            </span>
+                        </div>
+                    </p-fieldset>
+
+                    <div class="flex justify-content-between mt-3 ">  
+                        <div class="flex text-2xl font-semibold gap-3"
+                            *ngIf="isPagamentoCredito || isPagamentoDebito || isPagamentoPix || isPagamentoCash">
+                            <div class="w-10">
+                                <span class="font-semibold font-semibold text-600">Valor:</span>
+                                <span class="font-semibold font-semibold text-600">{{ total | currency:'BRL' }}</span>
+                            </div>
+                        </div>
+                        <p-button label="Confirmar" (click)="confirmarPagamento()"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- RESUMO DA COMPRA -->
+        <div *ngIf="isCompraFinalizada">            
+            <div class="card">
+                <p-table [value]="produtosPedido" [tableStyle]="{ 'min-width': '50rem' }">
+                    <ng-template pTemplate="header">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Quantidade</th>
+                            <th>Valor Unitário</th>
+                            <th>Valor Total</th>
+                        </tr>
+                    </ng-template>
+                    <ng-template pTemplate="body" let-product>
+                        <tr>
+                            <td>{{ product.code }}</td>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.price * product.quantity }}</td>
+                        </tr>
+                    </ng-template>
+                </p-table>
+
+                <div class="flex justify-content-between mt-3 ">  
+                    <div class="flex text-2xl font-semibold gap-3">
+                        <div class="flex w-10 gap-3">
+                            <span class="font-semibold font-semibold text-600">Total:</span>
+                            <span class="font-semibold font-semibold text-600">{{ total | currency:'BRL' }}</span>
+                        </div>
+                    </div>
+                    
+                    <p-button label="Página Inicial"  routerLink="/"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

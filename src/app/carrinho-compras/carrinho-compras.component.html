@@ -1,7 +1,8 @@
 <div class="custom-main-card">
     <div class="mt-4">
         <app-breadcrumb  [items]="[{ icon: 'pi pi-home', routerLink: '/'},
-                                   {label: 'Carrinho de Compras', routerLink: '/cardapio'}
+                                   {label: 'Cardápio', routerLink: '/cardapio'},
+                                   {label: 'Carrinho Compras'}
                                   ]"/>
     </div>
 
@@ -18,14 +19,15 @@
         
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input type="text" pInputText/>
+                <input disabled type="text" pInputText/>
             </span>
             <span class="pi pi-question-circle" style="font-size: 2rem"></span>
         </div>
     
         <div class="w-2 align-items-end">        
             <p-button label="Pagamento" 
-                      routerLink="/carrinho"></p-button>
+                      routerLink="/pagamento"
+                      (click)="abrirOpcoesPagamento()"></p-button>
         </div>    
         <div class="flex justify-content-end">        
             <span class="pi pi-sign-out cursor-pointer" 

@@ -1,7 +1,7 @@
 <div class="custom-main-card">
     <div class="mt-4">
         <app-breadcrumb  [items]="[{ icon: 'pi pi-home', routerLink: '/'},
-                                   {label: 'Cardápio', routerLink: '/cardapio'}
+                                   {label: 'Cardápio'}                                   
                                   ]"/>
     </div>
 
@@ -18,13 +18,14 @@
         
             <span class="p-input-icon-left">
                 <i class="pi pi-search"></i>
-                <input type="text" pInputText/>
+                <input disabled type="text" pInputText/>
             </span>
             <span class="pi pi-question-circle" style="font-size: 2rem"></span>
         </div>
     
         <div class="w-2 align-items-end">        
             <p-button label="Finalizar Pedido" 
+                      [disabled]="isButtonDisabled"
                       (click)="finalizarPedido()"></p-button>
         </div>    
         <div class="flex justify-content-end">        

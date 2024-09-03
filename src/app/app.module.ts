@@ -15,6 +15,14 @@ import { BadgeModule } from 'primeng/badge';
 import { CarrinhoComprasComponent } from './carrinho-compras/carrinho-compras.component';
 import { CarrinhoComprasModule } from './carrinho-compras/carrinho-compras.module';
 import { DataViewModule } from 'primeng/dataview';
+import { PagamentoComponent } from './pagamento/pagamento.component';
+import { PagamentoModule } from './pagamento/pagamento.module';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CardModule } from 'primeng/card';
+import { FieldsetModule } from 'primeng/fieldset';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { PasswordModule } from 'primeng/password';
 
 
 @NgModule({
@@ -22,14 +30,23 @@ import { DataViewModule } from 'primeng/dataview';
     AppComponent,
     BreadcrumbComponent,
     CardapioComponent,
-    CarrinhoComprasComponent
+    CarrinhoComprasComponent,
+    PagamentoComponent
   ],
   imports: [
     AppRoutingModule,
     BrowserModule,
     BreadcrumbModule,
+    PasswordModule,
+    CardModule,
+    FieldsetModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    FormsModule,
     ButtonModule,
     CarrinhoComprasModule,
+    PagamentoModule,
+    RadioButtonModule,
     DataViewModule,
     RouterModule,
     BadgeModule,
