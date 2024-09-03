@@ -14,13 +14,13 @@
             animation: fadeIn 0.2s;
             text-align: center;
             width: 500px;
-    
-            .p-card {
-                background: #b5fc8c !important;
-                width: 500px;
-                height: 150px;
-            }
-            
+            background: #b5fc8c;
+            height: 150px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 15px;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
         }
     
         .custom-card-btn:hover {
