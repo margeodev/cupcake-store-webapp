@@ -16,7 +16,7 @@
             width: 500px;
     
             .p-card {
-                background: #b5fc8c;
+                background: #b5fc8c !important;
                 width: 500px;
                 height: 150px;
             }
